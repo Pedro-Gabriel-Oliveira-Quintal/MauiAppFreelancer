@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.Cadastro"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             Title="Cadastro">
+
+
+
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <Grid>
+                <Image Source="logo.jpg"
+                       VerticalOptions="Start"/>
+
+                <Button Text="←" TextColor="White"
+                        HorizontalOptions="End"
+                        VerticalOptions="Start"
+                        BackgroundColor="Transparent"
+                        FontSize="40"
+                        Margin="-10, -25"
+                        Clicked="Button_Clicked"/>
+            </Grid>
+           
+            <VerticalStackLayout Margin="25" Spacing="10">
+
+                <Label Text="Nome de Usuário" TextColor="Black"/>
+                <Frame BorderColor="Purple" BackgroundColor="Transparent" Padding="0">
+                    <Entry x:Name="txt_nome_usuario" TextColor="Black"/>
+                </Frame>
+                
+
+                <Label Text="Data de Nascimento" TextColor="Black"/>
+                <Frame BorderColor="Purple" BackgroundColor="Transparent" Padding="0">
+                    <Entry x:Name="txt_data_nasc" Placeholder="dd/mm/aaaa"
+                           TextColor="Black"
+                           Keyboard="Numeric"
+                           TextChanged="txt_data_nasc_TextChanged"/>
+                </Frame>
+
+                <Label Text="Endereço" TextColor="Black"/>
+                <Frame BorderColor="Purple" BackgroundColor="Transparent" Padding="0">
+                    <Entry x:Name="txt_endereco" TextColor="Black"/>
+                </Frame>
+
+                <Label Text="Cep" TextColor="Black"/>
+                <Frame BorderColor="Purple" BackgroundColor="Transparent" Padding="0">
+                    <Entry x:Name="txt_cep" Placeholder="0000-000"
+                           TextColor="Black"
+                           Keyboard="Numeric"
+                           MaxLength="9"
+                           TextChanged="txt_cep_TextChanged"/>
+                </Frame>
+
+                <Label Text="Bairro" TextColor="Black"/>
+                <Frame BorderColor="Purple" BackgroundColor="Transparent" Padding="0">
+                    <Entry x:Name="txt_bairro" TextColor="Black"/>
+                </Frame>
+
+                <Label Text="CPF ou CNPJ" TextColor="Black"/>
+                <Frame BorderColor="Purple" BackgroundColor="Transparent" Padding="0">
+                    <Entry x:Name="txt_cpf_cnpj" 
+                           TextColor="Black"
+                           MaxLength="18"
+                           TextChanged="txt_cpf_cnpj_TextChanged"/>
+                </Frame>
+
+                <Label Text="Telefone" TextColor="Black"/>
+                <Frame BorderColor="Purple" BackgroundColor="Transparent" Padding="0">
+                    <Entry x:Name="txt_telefone"
+                           TextColor="Black"
+                           Keyboard="Numeric"
+                           MaxLength="15"
+                           TextChanged="txt_telefone_TextChanged"/>
+                </Frame>
+
+                <Label Text="Email" TextColor="Black"/>
+                <Frame BorderColor="Purple" BackgroundColor="Transparent" Padding="0">
+                    <Entry x:Name="txt_email"
+                           TextColor="Black"
+                           Keyboard="Email"/>
+                </Frame>
+
+                <Label Text="Senha" TextColor="Black"/>
+                <Frame BorderColor="Purple" BackgroundColor="Transparent" Padding="0">
+                    <Entry x:Name="txt_senha"
+                           TextColor="Black"/>
+                </Frame>
+
+                <Button Text="Criar conta" TextColor="White"
+                        BackgroundColor="{StaticResource Gray900}"
+                        HorizontalOptions="Center"
+                        Clicked="Button_Clicked_1"/>
+                
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
