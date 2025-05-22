@@ -2,11 +2,33 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.PaginaPerfil"
+             NavigationPage.HasNavigationBar="False"
              Title="PaginaPerfil">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Grid>
+            <Image Source="tela.png"
+           VerticalOptions="Start"/>
+        </Grid>
+
+        <Frame x:Name="profileFrame"
+           Padding="0" WidthRequest="120" HeightRequest="120"
+           CornerRadius="60"
+           BorderColor="White"
+           BackgroundColor="White"
+           VerticalOptions="Start"
+           HorizontalOptions="Start"
+           TranslationY="-25"
+           TranslationX="30"
+           HasShadow="True">    
+            <Image x:Name="minhaImagem"
+               Source="perfil_padrao.png"
+               Aspect="AspectFill"
+               WidthRequest="120"
+               HeightRequest="120">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Frame>
     </VerticalStackLayout>
 </ContentPage>
