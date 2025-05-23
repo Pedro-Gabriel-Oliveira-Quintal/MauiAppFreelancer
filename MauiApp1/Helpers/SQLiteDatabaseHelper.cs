@@ -189,5 +189,10 @@ namespace MauiApp1.Helpers
 
             return result.FirstOrDefault();
         }
+
+        public Task<Perfil> GetPerfilPorUsuarioId(int idUsuario)
+        {
+            return _conn.Table<Perfil>().Where(p => p.idUsuario == idUsuario).FirstOrDefaultAsync();
+        }
     }
 }
