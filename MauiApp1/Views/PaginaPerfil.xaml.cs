@@ -1,4 +1,6 @@
 using MauiApp1.Helpers;
+using projetoIII.Helpers;
+using projetoIII.ViewModels;
 
 
 namespace MauiApp1.Views;

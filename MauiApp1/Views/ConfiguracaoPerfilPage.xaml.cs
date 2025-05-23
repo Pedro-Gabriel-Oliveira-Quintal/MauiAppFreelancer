@@ -3,7 +3,8 @@ using MauiApp1.Helpers;
 using MauiApp1.Models;
 using MauiApp1.Views;
 using System.Reflection;
-using MauiApp1.Helpers;xx
+using MauiApp1.Helpers;
+using projetoIII.Helpers;
 
 namespace MauiApp1.Views
 {
