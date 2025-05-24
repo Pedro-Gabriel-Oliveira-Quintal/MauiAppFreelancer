@@ -1,3 +1,4 @@
+using MauiApp1.Helpers;
 using System.Threading.Tasks;
 
 namespace MauiApp1.Views;
@@ -23,35 +24,36 @@ public partial class Login : ContentPage
 
     private async void Button_Clicked_1(object sender, EventArgs e)
     {
-		try
-		{
-
+        try
+        {
             string email = txt_email.Text;
             string senha = txt_senha.Text;
 
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
             {
-				throw new Exception("Por favor, preencha todos os campos");
-    
-			}
+                throw new Exception("Por favor, preencha todos os campos");
+            }
 
-			var usuario = await App.Db.GetUsuarioPorEmail(email);
+            var usuario = await App.Db.GetUsuarioPorEmail(email);
 
-			if (usuario == null)
-			{
+            if (usuario == null)
+            {
                 throw new Exception("Usuário não encontrado.");
             }
 
-			if (usuario.senha != senha)
-			{
-				throw new Exception("Senha incorreta");
-			}
+            if (usuario.senha != senha)
+            {
+                throw new Exception("Senha incorreta");
+            }
+
+            // **Armazena o IdUsuario do usuário logado na sessão**
+            Sessao.IdUsuarioLogado = usuario.idUsuario;
 
             await Navigation.PushAsync(new PaginaPerfil());
         }
         catch (Exception ex)
-		{
-			await DisplayAlert("Erro", ex.Message, "OK");
-		}
+        {
+            await DisplayAlert("Erro", ex.Message, "OK");
+        }
     }
 }

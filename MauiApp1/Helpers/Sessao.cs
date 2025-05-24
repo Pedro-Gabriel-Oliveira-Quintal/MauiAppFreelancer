@@ -1,4 +1,4 @@
-﻿namespace projetoIII.Helpers
+﻿namespace MauiApp1.Helpers
 {
     public static class Sessao
     {

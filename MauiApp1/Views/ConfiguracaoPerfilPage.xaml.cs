@@ -1,10 +1,10 @@
-using Microsoft.Maui.Controls;
+Ôªøusing Microsoft.Maui.Controls;
 using MauiApp1.Helpers;
 using MauiApp1.Models;
-using MauiApp1.Views;
+using MauiApp1.ViewModels;
 using System.Reflection;
-using MauiApp1.Helpers;
-using projetoIII.Helpers;
+
+
 
 namespace MauiApp1.Views
 {
@@ -15,11 +15,12 @@ namespace MauiApp1.Views
             InitializeComponent();
             Shell.SetNavBarIsVisible(this, false);
         }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            // Busca perfil do usu·rio logado
+            // Busca perfil do usu√°rio logado
             var perfil = await App.Db.GetPerfilPorUsuarioId(Sessao.IdUsuarioLogado);
 
             if (perfil != null)
@@ -56,7 +57,7 @@ namespace MauiApp1.Views
                     string.IsNullOrWhiteSpace(biografia) ||
                     string.IsNullOrWhiteSpace(documentos))
                 {
-                    await DisplayAlert("Erro", "Preencha todos os campos e selecione se È CPF ou CNPJ.", "OK");
+                    await DisplayAlert("Erro", "Preencha todos os campos e selecione se √© CPF ou CNPJ.", "OK");
                     return;
                 }
 

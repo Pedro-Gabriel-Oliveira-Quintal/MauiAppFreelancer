@@ -22,9 +22,11 @@ namespace MauiApp1.Helpers
                     documentos TEXT,
                     fotoPerfil TEXT,
                     biografia TEXT,
+                    tipoConta TEXT(10),
                     FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario)
                 );
             ").Wait();
+
             _conn.ExecuteAsync(@"
                CREATE TABLE IF NOT EXISTS Empresa (
                     idEmpresa INTEGER PRIMARY KEY,
@@ -151,9 +153,9 @@ namespace MauiApp1.Helpers
         }
         public Task<List<Perfil>> UpdatePerfil(Perfil perfil) 
         {
-            string sql = "UPDATE Perfil SET nomeExibicao=?, documentos=?, fotoPerfil=?, biografia=? WHERE idPerfil=?";
+            string sql = "UPDATE Perfil SET nomeExibicao=?, documentos=?, fotoPerfil=?, biografia=?, tipoConta=? WHERE idPerfil=?";
 
-            return _conn.QueryAsync<Perfil>(sql, perfil.nomeExibicao, perfil.documentos, perfil.fotoPerfil, perfil.biografia, perfil.idPerfil);
+            return _conn.QueryAsync<Perfil>(sql, perfil.nomeExibicao, perfil.documentos, perfil.fotoPerfil, perfil.biografia, perfil.tipoConta, perfil.idPerfil);
         }
         public Task<int> DeletePerfil(int idPerfil) 
         {
@@ -188,6 +190,16 @@ namespace MauiApp1.Helpers
             var result = await _conn.QueryAsync<Usuario>(sql, email);
 
             return result.FirstOrDefault();
+        }
+
+        internal async Task InsertPerfil(Views.Perfil perfil)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Usuario> GetUsuarioPorId(int id)
+        {
+            return _conn.Table<Usuario>().Where(u => u.idUsuario == id).FirstOrDefaultAsync();
         }
 
         public Task<Perfil> GetPerfilPorUsuarioId(int idUsuario)

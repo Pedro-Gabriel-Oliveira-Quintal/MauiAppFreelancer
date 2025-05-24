@@ -1,3 +1,4 @@
+using MauiApp1.Helpers;
 using MauiApp1.Models;
 using System.Threading.Tasks;
 
@@ -82,6 +83,7 @@ public partial class Cadastro : ContentPage
             };
 
             await App.Db.InsertUsuario(u);
+            Sessao.IdUsuarioLogado = u.idUsuario;
             await DisplayAlert("Sucesso!", "Conta criada", "OK");
 
             if (tipo == TipoUsuario.autonomo)

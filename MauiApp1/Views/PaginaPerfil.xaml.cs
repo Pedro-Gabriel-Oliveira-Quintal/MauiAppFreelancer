@@ -1,6 +1,6 @@
 using MauiApp1.Helpers;
-using projetoIII.Helpers;
-using projetoIII.ViewModels;
+using MauiApp1.Helpers;
+using MauiApp1.ViewModels;
 
 
 namespace MauiApp1.Views;
@@ -19,22 +19,33 @@ public partial class PaginaPerfil : ContentPage
     }
 
     private async void LoadPerfil()
-    {
-        var perfil = await App.Db.GetPerfilPorUsuarioId(Sessao.IdUsuarioLogado);
+{
+    var perfil = await App.Db.GetPerfilPorUsuarioId(Sessao.IdUsuarioLogado);
 
-        if (perfil != null)
+    if (perfil != null)
+    {
+        BindingContext = new PerfilViewModel(
+            perfil.nomeExibicao,
+            perfil.biografia,
+            perfil.documentos
+        );
+
+        if (!string.IsNullOrEmpty(perfil.fotoPerfil) && File.Exists(perfil.fotoPerfil))
         {
-            BindingContext = new PerfilViewModel(
-                perfil.nomeExibicao,
-                perfil.biografia,
-                perfil.documentos // Aqui deve vir "CPF" ou "CNPJ"
-);
+            // Usa FromStream para evitar cache
+            minhaImagem.Source = ImageSource.FromStream(() => File.OpenRead(perfil.fotoPerfil));
         }
         else
         {
-            await DisplayAlert("Perfil", "Nenhum perfil configurado ainda.", "OK");
+            minhaImagem.Source = "perfil_padrao.png";
         }
     }
+    else
+    {
+        await DisplayAlert("Perfil", "Nenhum perfil configurado ainda.", "OK");
+    }
+}
+
 
     public PaginaPerfil(string nome, string biografia, string tipoConta)
     {
@@ -58,8 +69,28 @@ public partial class PaginaPerfil : ContentPage
 
             if (resultado != null)
             {
-                var stream = await resultado.OpenReadAsync();
-                minhaImagem.Source = ImageSource.FromStream(() => stream);
+                var nomeArquivo = $"fotoPerfil_{Sessao.IdUsuarioLogado}.jpg";
+                var caminhoDestino = Path.Combine(FileSystem.AppDataDirectory, nomeArquivo);
+
+                using (var inputStream = await resultado.OpenReadAsync())
+                using (var outputStream = File.OpenWrite(caminhoDestino))
+                {
+                    await inputStream.CopyToAsync(outputStream);
+                }
+
+                // Limpa a imagem antes de carregar nova para evitar cache
+                minhaImagem.Source = null;
+
+                // Usa FromStream para evitar cache e bloquear arquivo
+                minhaImagem.Source = ImageSource.FromStream(() => File.OpenRead(caminhoDestino));
+
+                // Atualiza o banco
+                var perfil = await App.Db.GetPerfilPorUsuarioId(Sessao.IdUsuarioLogado);
+                if (perfil != null)
+                {
+                    perfil.fotoPerfil = caminhoDestino;
+                    await App.Db.UpdatePerfil(perfil);
+                }
             }
         }
         catch (Exception ex)

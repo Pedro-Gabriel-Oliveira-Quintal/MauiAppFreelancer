@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace projetoIII.ViewModels
+namespace MauiApp1.ViewModels
 {
     public class PerfilViewModel : INotifyPropertyChanged
     {

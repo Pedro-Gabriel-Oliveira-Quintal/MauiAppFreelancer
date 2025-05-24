@@ -4,6 +4,7 @@ namespace MauiApp1
 {
     public partial class App : Application
     {
+
         static SQLiteDatabaseHelper _db;
 
         public static SQLiteDatabaseHelper Db

@@ -15,5 +15,6 @@ namespace MauiApp1.Models
         public string documentos { get; set; }
         public string fotoPerfil { get; set; }
         public string biografia { get; set; }
+        public string tipoConta { get; set; }
     }
 }
