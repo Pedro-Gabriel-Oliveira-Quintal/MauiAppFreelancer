@@ -37,6 +37,16 @@ namespace MauiApp1.Views
                 {
                     radioCpf.IsChecked = true;
                 }
+
+                if (!string.IsNullOrEmpty(perfil.fotoPerfil) && File.Exists(perfil.fotoPerfil))
+                {
+                    minhaImagem.Source = ImageSource.FromStream(() => File.OpenRead(perfil.fotoPerfil));
+                }
+                else
+                {
+                    minhaImagem.Source = "perfil_padrao.png"; // imagem padrão que já está no projeto
+                }
+
             }
         }
 
@@ -61,16 +71,19 @@ namespace MauiApp1.Views
                     return;
                 }
 
+                var perfilExistente = await App.Db.GetPerfilPorUsuarioId(Sessao.IdUsuarioLogado);
+
                 // Cria ou atualiza o perfil
                 var perfil = new Models.Perfil
                 {
                     idUsuario = Sessao.IdUsuarioLogado,
                     nomeExibicao = nome,
                     biografia = biografia,
-                    documentos = documentos
+                    documentos = documentos,
+                    fotoPerfil = perfilExistente?.fotoPerfil
                 };
 
-                var perfilExistente = await App.Db.GetPerfilPorUsuarioId(Sessao.IdUsuarioLogado);
+                
 
                 if (perfilExistente == null)
                 {

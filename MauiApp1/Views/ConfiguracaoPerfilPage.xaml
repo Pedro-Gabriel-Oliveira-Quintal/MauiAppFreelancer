@@ -19,57 +19,53 @@
         <!-- Barra superior com gradiente -->
         <Grid Background="{StaticResource TopBarGradient}" Padding="15" Row="0" ColumnDefinitions="*, Auto">
 
-
+        
             <Button Text="Salvar"
-    Clicked="OnSalvarClicked"
-    BackgroundColor="Transparent"
-    TextColor="White"
-    CornerRadius="10"
-    FontAttributes="Bold"
-    Padding="10,5"
-    Margin="0,-5,3,0"
-    HorizontalOptions="End"
-    VerticalOptions="Center"
-    BorderColor="White"/>
+                Clicked="OnSalvarClicked"
+                BackgroundColor="Transparent"
+                TextColor="White"
+                CornerRadius="10"
+                FontAttributes="Bold"
+                Padding="10,5"
+                Margin="0,-5,3,0"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                BorderColor="White"/>
 
 
 
         </Grid>
 
         <Button Text="←"
-    TextColor="White"
-    BackgroundColor="Transparent"
-    FontSize="40"
-    Margin="0,0,0,0"
-    Clicked="OnVoltarClicked"
-    HorizontalOptions="Start"
-    VerticalOptions="Start"
-    Grid.Column="0" />
+            TextColor="White"
+            BackgroundColor="Transparent"
+            FontSize="40"
+            Margin="0,0,0,0"
+            Clicked="OnVoltarClicked"
+            HorizontalOptions="Start"
+            VerticalOptions="Start"
+            Grid.Column="0" 
+            TranslationY="-16"/>
 
 
 
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Padding="20" Spacing="20">
 
-                <Frame WidthRequest="100"
-   HeightRequest="100"
-   CornerRadius="50"
-   HasShadow="False"
-   HorizontalOptions="Center"
-   VerticalOptions="Center"
-   Padding="0"
-   IsClippedToBounds="True">
-
-                    <!--FOTO DE PERFIL-->
-                    <Image Source="fotoperfil.png"
-       Aspect="AspectFill"
-       WidthRequest="100"
-       HeightRequest="100"
-       HorizontalOptions="Fill"
-       VerticalOptions="Fill">
-                        <Image.Clip>
-                            <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
-                        </Image.Clip>
+                <Frame x:Name="profileFrame"
+                   Padding="0" WidthRequest="120" HeightRequest="120"
+                   CornerRadius="60"
+                   BorderColor="White"
+                   BackgroundColor="Gray"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Start"
+                   TranslationY="0"
+                   TranslationX="0"
+                   HasShadow="True">
+                    <Image x:Name="minhaImagem"
+                       Aspect="AspectFill"
+                       WidthRequest="120"
+                       HeightRequest="120">
                     </Image>
                 </Frame>
 
@@ -78,7 +74,9 @@
                     <Label Text="Nome" TextColor="Black" VerticalOptions="Center" />
                 </HorizontalStackLayout>
                 <!-- NOME DO USUARIO -->
-                <Entry x:Name="entryNome" Placeholder="Digite seu nome" Text="{Binding Nome}" BackgroundColor="WhiteSmoke" TextColor="Black" />
+                <Frame BorderColor="{StaticResource Gray200}" BackgroundColor="Transparent" Padding="0">
+                    <Entry x:Name="entryNome" Placeholder="Digite seu nome" Text="{Binding Nome}" BackgroundColor="Transparent" TextColor="Black" />
+                </Frame>
 
                 <HorizontalStackLayout Spacing="5" VerticalOptions="Center">
                     <Image Source="lapis.png" WidthRequest="16" HeightRequest="16" VerticalOptions="Center" />
@@ -86,22 +84,29 @@
                 </HorizontalStackLayout>
 
                 <!-- DESCRICAO -->
-                <Entry x:Name="entryBiografia" Placeholder="Digite uma descrição sobre você" Text="{Binding Descricao}" BackgroundColor="WhiteSmoke" TextColor="Black" />
+                <Frame BorderColor="{StaticResource Gray200}" BackgroundColor="Transparent" Padding="0">
+                    <Entry x:Name="entryBiografia" Placeholder="Digite uma descrição sobre você" Text="{Binding Descricao}" BackgroundColor="Transparent" TextColor="Black" />
+                </Frame>
 
-                <!-- DOCUMENTOS -->
+                    <!-- DOCUMENTOS -->
                 <HorizontalStackLayout Spacing="5" VerticalOptions="Center">
                     <Image Source="clipes.png" WidthRequest="16" HeightRequest="16" VerticalOptions="Center" />
                     <Label Text="Documentos" TextColor="Black" VerticalOptions="Center" />
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="5">
-                    <Entry Placeholder="Selecionar documento..." IsReadOnly="True" HorizontalOptions="FillAndExpand" BackgroundColor="WhiteSmoke"/>
-                    <ImageButton Source="clipes.png" WidthRequest="30" HeightRequest="10"  BackgroundColor="WhiteSmoke" />
+                    <Frame BorderColor="{StaticResource Gray200}" BackgroundColor="Transparent" Padding="0">
+                        <Entry Placeholder="Selecionar documento..." IsReadOnly="True" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"/>
+                    </Frame>
+
+                    <Frame BorderColor="{StaticResource Gray200}" BackgroundColor="Transparent" Padding="0">
+                        <ImageButton Source="clipes.png" WidthRequest="30" HeightRequest="10"  BackgroundColor="Transparent" />
+                    </Frame>
                 </HorizontalStackLayout>
 
                 <!-- TIPO DE CONTA    -->
                 <Label Text="Tipo de Conta" TextColor="Black"/>
-                <Frame BorderColor="LightGray" Padding="10" BackgroundColor="WhiteSmoke">
+                <Frame BorderColor="{StaticResource Gray200}" Padding="10" BackgroundColor="Transparent">
                     <VerticalStackLayout Spacing="10">
                         <RadioButton x:Name="radioCpf" Content="CPF" GroupName="tipoConta" IsChecked="{Binding IsCpfChecked}" TextColor="Black" />
                         <RadioButton x:Name="radioCnpj" Content="CNPJ" GroupName="tipoConta" IsChecked="{Binding IsCnpjChecked}" TextColor="Black" />
@@ -111,19 +116,21 @@
 
                 <!-- BOTOES DE LOGOUT E EXCLUIR-->
                 <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
-                    <Button Text="Excluir Conta" 
-                        BackgroundColor="LightGray" 
+                    <Frame BorderColor="{StaticResource Gray200}" BackgroundColor="Transparent" Padding="0">
+                        <Button Text="Excluir Conta" 
+                        BackgroundColor="Transparent" 
                         TextColor="Black"/>
+                    </Frame>
 
 
-
-                    <Button Text="Logout"
-                        BackgroundColor="LightGray"
+                    <Frame BorderColor="{StaticResource Gray200}" BackgroundColor="Transparent" Padding="0">
+                        <Button Text="Logout"
+                        BackgroundColor="Transparent"
                         TextColor="Black" 
                         Clicked="OnLogoutClicked"/>
+                    </Frame>
                 </HorizontalStackLayout>
-
-
+                
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

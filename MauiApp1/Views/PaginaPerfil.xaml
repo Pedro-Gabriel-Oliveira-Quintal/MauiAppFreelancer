@@ -74,27 +74,28 @@
                        FontSize="22"
                        FontAttributes="Bold"
                        TextColor="Black"
-                       HorizontalOptions="Center" />
+                       HorizontalOptions="Center"
+                               TranslationX="-117"/>
 
                         <!-- Card de informações -->
-                        <Frame BorderColor="LightGray"
+                        <Frame BorderColor="Transparent"
                        CornerRadius="12"
                        Padding="16"
-                       BackgroundColor="WhiteSmoke"
+                       BackgroundColor="Transparent"
                        HasShadow="False">
 
-                            <VerticalStackLayout Spacing="16">
-                                <Label Text="Descrição" FontAttributes="Bold" TextColor="Black" />
-                                <Label Text="{Binding Biografia}" TextColor="Black" FontSize="14" />
+                            <VerticalStackLayout TranslationY="-20" Spacing="16">
+                                <Label Text="Descrição: " FontAttributes="Bold" TextColor="Black" />
+                                <Label Text="{Binding Biografia}" TextColor="Black" FontSize="14" TranslationY="-15"/>
 
-                                <Label Text="Tipo de Conta" FontAttributes="Bold" TextColor="Black" />
-                                <Label Text="{Binding TipoConta}" TextColor="Black" FontSize="14" />
+                                <Label Text="Tipo de Conta:" FontAttributes="Bold" TextColor="Black" />
+                                <Label Text="{Binding TipoConta}" TextColor="Black" FontSize="14" TranslationY="-15" />
                             </VerticalStackLayout>
                         </Frame>
 
                         <!-- Área de publicações -->
                         <Frame BorderColor="LightGray" CornerRadius="10" Padding="10"
-                       BackgroundColor="WhiteSmoke"
+                       BackgroundColor="Transparent"
                        HorizontalOptions="Fill">
 
                             <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
